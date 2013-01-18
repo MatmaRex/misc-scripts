@@ -1,0 +1,5 @@
+*.marshal
+*-marshal
+*-mar
+*-memo
+wikilubizabytki/*.xls

@@ -1,0 +1,32 @@
+{{Cmentarz infobox
+ |nazwa                    = 
+ |zabytek                  = 
+ |zdjęcie                  = 
+ |opis zdjęcia             = 
+ |nazwa pełna              = 
+ |poprzednie nazwy         = 
+ |państwo                  = 
+ |miejscowość              = 
+ |adres                    = 
+ |typ cmentarza            = 
+ |wyznanie                 = 
+ |stan cmentarza           = 
+ |powierzchnia cmentarza   = 
+ |liczba pochówków         = 
+ |liczba grobów            = 
+ |liczba kwater            = 
+ |data otwarcia            = 
+ |data ostatniego pochówku = 
+ |data likwidacji          = 
+ |zarządca                 = 
+ |architekt                = 
+ |mapa cmentarza           = 
+ |kod mapy                 = 
+ |stopniN = |minutN = |sekundN = 
+ |stopniE = |minutE = |sekundE = 
+ |stopniW = |minutW = |sekundW = 
+ |stopniS = |minutS = |sekundS = 
+ |opis miejsca             = 
+ |commons                  = 
+ |www                      = 
+}}

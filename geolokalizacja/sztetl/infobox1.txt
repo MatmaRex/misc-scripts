@@ -1,0 +1,22 @@
+{{Synagoga infobox
+ | nazwa          = 
+ | zabytek        =
+ | zdjęcie        = 
+ | zdjęcie podpis = 
+ | państwo        = 
+ | miejscowość    = 
+ | stopniN = | minutN = | sekundN = 
+ | stopniS = | minutS = | sekundS = 
+ | stopniE = | minutE = | sekundE = 
+ | stopniW = | minutW = | sekundW = 
+ | kod mapy       = <!-- o ile inny niż państwo -->
+ | zbudowano      = 
+ | zlikwidowano   = 
+ | zniszczono     = 
+ | zburzono       = 
+ | odłam          = 
+ | architekt      = 
+ | budulec        = 
+ | obecnie        = 
+ | commons        = 
+}}

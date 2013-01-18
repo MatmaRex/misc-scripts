@@ -1,0 +1,1 @@
+^[=' ]+Linki zewnętrzne[\s\S]*\((?:en|ang|de|niem|ru|ros|es|hiszp|fr|fran|pt|port|dk|duń|kor)\.?\)

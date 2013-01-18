@@ -1,0 +1,1 @@
+(?!ron[ya]|[ \|]rok)[^ =]{4} *= *(?:\[\[)?(\d{4})(?:\]\]| [^\]]+\]\])? *[-—–] *(?:obecnie|nadal|teraz|do teraz|dzisiaj|do dzisiaj|dziś|do dziś|aktualnie|teraźniejszość|present|)\s*[\|\}]
