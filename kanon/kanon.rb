@@ -78,7 +78,8 @@ pl = quickload(:pl) or begin
 		if a.is_a? Symbol
 			(a.to_s.sub(/\A(=+)([^=]+)\1\Z/){"#{$1} #{translation_table[$2.strip]} #{$1}"}).to_sym
 		else
-			Page.new(a, 'en').text.match(inter_re)[1] rescue nil
+			resp = s.API("action=query&prop=langlinks&format=json&lllimit=max&titles=#{CGI.escape a}")
+			resp['query']['pages'].values[0]['langlinks'].find{|h| h['lang'] == 'pl'}['*'] rescue nil
 		end
 	}
 
