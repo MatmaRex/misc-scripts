@@ -1,0 +1,146 @@
+=== w sam raz:
+
+zawodnik
+grafika
+opis grafiki
+
+data urodzenia
+miejsce urodzenia
+data śmierci
+miejsce śmierci
+
+klub
+wzrost
+waga
+przydomek
+
+debiut
+pierwszy skok
+pierwsze punkty
+pierwsze podium
+pierwsze zwycięstwo
+
+debiut pś
+debiut pś indywidualnie
+debiut pś drużynowo
+pierwsze punkty pś
+pierwsze podium pś
+pierwsze zwycięstwo pś
+
+reprezentacja
+debiut reprezentacja
+
+najdłuższy skok
+pierwszy trener
+trener
+trener kadry
+trener indywidualny
+
+commons
+www
+dorobek
+
+
+=== wątpliwe:
+
+stan cywilny
+początek kariery trenerskiej
+najlepszy wynik
+rekord życiowy
+najdłuższy ustany skok
+największe osiągnięcie
+1996-1999
+1999-2006
+2007-2008
+2008-2011
+od 2008
+ostatnie podium pś
+ostatni start w pś
+ostatnie zwycięstwo w pś
+ostatnie zwycięstwo pś
+ostatni skok w pucharze świata
+koniec kariery
+najlepszy wynik pś
+pierwsza dziesiątka pś
+pierwszy występ w zawodach pś w kombinacji norweskiej
+pierwsze punkty w pś w kombinacji norweskiej
+debiut w pk
+pierwsze punkty w pk
+pierwszy bieg
+debiut w coc
+pierwsze podium coc
+pierwsze punkty coc
+pierwszy ślizg
+debiut w pś czwórki
+pierwsze punkty pś czwórki
+najlepszy występ w pś
+najwyższe miejsce w zawodach pś
+wikicytaty
+
+
+
+=== zmiany nazw:
+
+debiut w pś => debiut pś
+debiut w pucharze świata => debiut pś
+pierwszy start w konkursie pś => debiut pś
+pierwsze punkty w pś => pierwsze punkty pś
+pierwsze punkty<br />pś => pierwsze punkty pś
+debiut punkty w pś => pierwsze punkty pś
+pierwsze podium w pś => pierwsze podium pś
+pierwsze podium<br />pś => pierwsze podium pś
+pierwsze zwycięstwo w pś => pierwsze zwycięstwo pś
+
+pierwsza wygrana w pś => pierwsze zwycięstwo pś
+pierwsze punkty pucharu świata => pierwsze punkty pś
+pierwszy występ w konkursie pś => debiut pś
+
+
+debiut w pś indywidualnie => debiut pś indywidualnie
+debiut w pś drużynowo => debiut pś drużynowo
+
+reprezentacje => reprezentacja
+reprezentowane kraje => reprezentacja
+repreyentacja => reprezentacja
+debiut w reprezentacji => debiut reprezentacja
+debiut w kadrze narodowej => debiut reprezentacja
+
+oficjalna strona => www
+pseudonim => przydomek
+przydomki => przydomek
+opis zdjecia: => opis grafiki
+debiu => debiut
+trenerzy => trener
+trenerrz => trener
+pierwszy trener, trener klubowy => trener
+osobisty trener => trener indywidualny
+
+kluby => klub
+data ur. => data urodzenia
+rok urodzenia => data urodzenia
+miejsce ur. => miejsce urodzenia
+data urodznia => data urodzenia
+miesjce urodzenia => miejsce urodzenia
+
+
+=== do wywalenia:
+
+zawód
+języki obce
+języki
+miejsce zamieszkania
+motto
+wiek
+trener klubowy
+trenerzy klubowi
+imię i nazwisko
+dyscyplina
+sprzęt
+rękawice
+gogle
+narty
+wiązania
+obywatelstwo
+zwycięstwo w pś
+podium pś
+
