@@ -11,7 +11,7 @@ sites = sites.delete('specials') + sites.values.map{|a| a['site'] }.inject(:+)
 
 sites.each do |hash|
 	next if hash['closed'] || hash['private'] || hash['fishbowl']
-	#next if hash['dbname'].start_with? 'wikimania'
+	next if hash['dbname'].start_with? 'login'
 	
 	print "#{hash['url'].sub %r|^https?://|, ''}: "
 	
