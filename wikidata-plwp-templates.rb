@@ -60,7 +60,7 @@ list.pages.each do |p|
 		
 		json['sitelinks'] ||= {}
 		json['labels'] ||= {}
-		%w[pageid ns title lastrevid modified id type].each{|a| json.delete a }
+		%w[pageid ns title lastrevid modified id type claims].each{|a| json.delete a }
 		
 		# introduce new links and labels
 		merged.each do |k, v|
