@@ -96,9 +96,6 @@ list.pages.each do |p|
 				v = Regexp.escape v
 				k = Regexp.escape wiki_to_lang k
 				
-				# v.sub! /^(Шаблон|Хуызæг):/, '(Шаблон|Хуызæг):' if k == 'os'
-				v.sub! /^(.+?):/, '(\1|Template):'
-				
 				p.text.gsub!(/\[\[#{k}:#{v}\]\]\s*/, '')
 			end
 			if p.text != p.orig_text
