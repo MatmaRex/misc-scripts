@@ -6,10 +6,12 @@ require 'progressbar'
 
 def iw_translate article, sf, tolang
 	res = sf.API action:'query', prop:'langlinks', lllimit:500, titles:article, redirects:true
-	iwlinks = (res['query']['pages'].first['langlinks'] || []).map{|hsh| [ hsh['lang'], hsh['*'] ] }
+	iwlinks = (res['query']['pages'].values.first['langlinks'] || []).map{|hsh| [ hsh['lang'], hsh['*'] ] }
 	(Hash[iwlinks])[tolang]
 rescue
-	nil
+	require 'pp'
+	pp res
+	raise $!
 end
 
 link_re = /\[\[(?:([^\|\]]+)\|)?([^\|\]]+)\]\]/
