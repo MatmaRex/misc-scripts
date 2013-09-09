@@ -20,12 +20,15 @@ tpl_re = /\{\{(([^\|\}]+))(\|({{[^\{\}]+}}|[^\|\{\}])+)+\}\}/
 
 unless ARGV.length.between? 3,4
 	puts <<EOF
-usage:
-  to dump translated locally:
+Usage:
+  To dump translated locally:
     ruby iwtranslate.rb xx From_title yy
-  to upload to wiki:
+  To upload to wiki:
     ruby iwtranslate.rb xx From_title yy To_title
-  where "xx" is the source language and "yy" is the target language.
+  Where "xx" is the source language and "yy" is the target language.
+
+  While technically any target language is allowed, some things are
+  currently hardcoded for Polish (pl). Sorry 'bout that.
 EOF
 	exit
 end
