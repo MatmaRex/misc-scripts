@@ -60,7 +60,7 @@ pbar.finish
 pbar = ProgressBar.new("Templates", p.text.scan(tpl_re).length)
 p.text.gsub!(tpl_re) do
 	pbar.inc
-	target, all = $1, $&
+	name, all = $1, $&
 	
 	resp = RestClient.post(
 		"http://tools.wikimedia.pl/~beau/cgi-bin/convert.pl",
@@ -70,10 +70,15 @@ p.text.gsub!(tpl_re) do
 	)
 	transl = Nokogiri.HTML(resp).at('#mw_content textarea').text
 	
-	if transl and transl.strip!=''
+	if transl and transl.strip != ''
+		# citation template
 		transl.strip
+	elsif name.strip.downcase == 'main'
+		all
+			.sub(/main/i, 'osobny artykuł')
+			.gsub(/\|([^|}]+)/){ '|' + (iw_translate($1, s, tolng) || ":#{fromlng}:#{$1}") }
 	else
-		"[[#{iw_translate('Template:'+target, s, tolng) || ":#{fromlng}:#{'Template:'+target}"}]] #{all}"
+		"[[#{iw_translate('Template:'+name, s, tolng) || ":#{fromlng}:#{'Template:'+name}"}]] #{all}"
 	end
 end
 pbar.finish
