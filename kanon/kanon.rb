@@ -1,24 +1,6 @@
 # coding: utf-8
 require 'sunflower'
 
-def quicksave what, where
-	begin
-		File.open("#{where}-mar", 'wb'){|f| f.write Marshal.dump what}
-		return what
-	rescue
-		return nil
-	end
-end
-
-def quickload where
-	begin
-		what = Marshal.load File.binread "#{where}-mar"
-		return what
-	rescue
-		return nil
-	end
-end
-
 line_re = /
 	(?:
 		^\#+ \s* '{0,3}  # list item
@@ -46,42 +28,40 @@ translation_table = Hash[ File.readlines('naglowki-en.txt').map(&:strip).zip Fil
 
 # in lists, links are strings/nil, headers (with = signs) are symbols
 
-en = quickload(:en) or begin
-	s = Sunflower.new 'meta'
-	base = 'List of articles every Wikipedia should have'
+puts 'Loading list...'
+s = Sunflower.new 'meta'
+base = 'List of articles every Wikipedia should have'
 
-	p = s.page base
+p = s.page base
+
+d = []
+p.text.scan(line_re){|link, header|
+	if header
+		d << header.to_sym unless header=~/How to use this list/
+	else
+		d << link.sub(/^d:/, '')
+	end
+}
+
+
+puts 'Mapping interwiki...'
+s = Sunflower.new 'www.wikidata.org'
+wikidata = {} # used later
+pl = d.each_slice(50).map{|ids|
+	wikidata.sunflower_recursive_merge! s.API(
+		action: 'wbgetentities',
+		props: 'sitelinks',
+		ids: ids.reject{|a| a.is_a? Symbol }.join('|'),
+	)
 	
-	en = []
-	p.text.scan(line_re){|link, header|
-		if header
-			en << header.to_sym unless header=~/How to use this list/
-		else
-			en << link.sub(/^en:/, '')
-		end
-	}
-
-	quicksave en, :en
-end
-
-pl = quickload(:pl) or begin
-	s = Sunflower.new 'w:en'
-	puts 'Mapping interwiki...'
-	pl = en.map.with_index{|a, i|
-		puts i
+	ids.map{|a|
 		if a.is_a? Symbol
 			(a.to_s.sub(/\A(=+)([^=]+)\1\Z/){"#{$1} #{translation_table[$2.strip]} #{$1}"}).to_sym
 		else
-			resp = s.API("action=query&prop=langlinks&format=json&lllimit=max&titles=#{CGI.escape a}")
-			resp['query']['pages'].values[0]['langlinks'].find{|h| h['lang'] == 'pl'}['*'] rescue nil
+			wikidata['entities'][a.downcase]['sitelinks']['plwiki']['title'] rescue nil
 		end
 	}
-	puts 'done.'
-
-	quicksave pl, :pl
-end
-
-
+}.flatten
 
 
 
@@ -111,7 +91,7 @@ cats_to_icons = {
 intro = "{| class='wikitable' style='width:100%'
 ! Lp.
 !style='width:20%'| Tytuł
-!style='width:15%'| Ang. tytuł
+!style='width:15%'| Wikidane
 ! Długość
 ! Status
 !style='width:20%'| Medal/dobry w innych jęz.?
@@ -123,10 +103,10 @@ out = File.open('kanon.txt', 'w')
 out.sync = true
 
 headersalready = 0
-pairs = en.zip(pl)
+pairs = d.zip(pl)
 puts 'Scanning articles...'
 pairs.each_with_index do |pair, i|
-	entitle, title = *pair
+	datatitle, title = *pair
 	
 	lp = i - headersalready + 1
 	headersalready += 1 if title.is_a? Symbol
@@ -143,11 +123,11 @@ pairs.each_with_index do |pair, i|
 		out.puts "|-
 		| #{lp}.
 		| ?
-		| [[:en:#{entitle}]]
+		| [[:d:#{datatitle}]]
 		| 
 		| 
 		| 
-		| #{uwagi_hash[ "[[:en:#{entitle}]]" ] }
+		| #{uwagi_hash[ "[[:d:#{datatitle}]]" ] }
 		| #{Time.now.strftime '%Y-%m-%d'}
 		".gsub '		', ''
 	elsif title.include? '#'
@@ -155,11 +135,11 @@ pairs.each_with_index do |pair, i|
 		out.puts "|-
 		| #{lp}.
 		| [[#{title}]]
-		| [[:en:#{entitle}]]
+		| [[:d:#{datatitle}]]
 		| 
 		| 
 		| 
-		| #{uwagi_hash[ "[[:en:#{entitle}]]" ] || 'interwiki-link do sekcji!' }
+		| #{uwagi_hash[ "[[:d:#{datatitle}]]" ] || 'interwiki-link do sekcji!' }
 		| #{Time.now.strftime '%Y-%m-%d'}
 		".gsub '		', ''
 	elsif !(cats = (s.make_list 'categories_on', title rescue nil))
@@ -167,11 +147,11 @@ pairs.each_with_index do |pair, i|
 		out.puts "|-
 		| #{lp}.
 		| [[#{title}]]
-		| [[:en:#{entitle}]]
+		| [[:d:#{datatitle}]]
 		| 
 		| 
 		| 
-		| #{uwagi_hash[ "[[:en:#{entitle}]]" ] || 'przekierowanie?' }
+		| #{uwagi_hash[ "[[:d:#{datatitle}]]" ] || 'przekierowanie?' }
 		| #{Time.now.strftime '%Y-%m-%d'}
 		".gsub '		', ''
 	else
@@ -190,10 +170,9 @@ pairs.each_with_index do |pair, i|
 			ikonki << 'Plik:Nuvola kdict glass.png|20x20px|Źródła/WER'
 		end
 		
-		fa = p.text.scan(/\{\{link FA\|(.+?)}}/i).map{|lng| [lng[0], p.text.scan(/\[\[#{lng[0]}:(.+?)\]\]/)[0][0] ] rescue puts title, lng }.compact
-		ga = p.text.scan(/\{\{link GA\|(.+?)}}/i).map{|lng| [lng[0], p.text.scan(/\[\[#{lng[0]}:(.+?)\]\]/)[0][0] ] rescue puts title, lng }.compact
+		fa = p.text.scan(/\{\{link FA\|(.+?)}}/i).flatten.map{|lng| [lng, (wikidata['entities'][datatitle.downcase]['sitelinks'][lng.gsub('-','_') + 'wiki']['title'] rescue puts title, lng) ] }.compact
+		ga = p.text.scan(/\{\{link GA\|(.+?)}}/i).flatten.map{|lng| [lng, (wikidata['entities'][datatitle.downcase]['sitelinks'][lng.gsub('-','_') + 'wiki']['title'] rescue puts title, lng) ] }.compact
 		ga -= fa # never display links twice
-		
 		
 		kilobytes = p.text.length.to_f/1024
 		kilobytes_style = 
@@ -209,11 +188,11 @@ pairs.each_with_index do |pair, i|
 		out.puts "|-
 		| #{lp}.
 		| [[#{title}]]
-		| [[:en:#{entitle}]]
+		| [[:d:#{datatitle}]]
 		|#{kilobytes_style and "style='#{kilobytes_style}'|"} #{("%.1f" % kilobytes).gsub '.', ','}&nbsp;KB
 		| #{ikonki.map{|a| "[[#{a}]]"}.join ' '}
 		| #{fa.empty? ? '—' : fa.map{|lng, tt| "[[:#{lng}:#{tt}|#{lng}]]"}.join(', ')} / #{ga.empty? ? '—' : ga.map{|lng, tt| "[[:#{lng}:#{tt}|#{lng}]]"}.join(', ')}
-		| #{uwagi_hash[ "[[:en:#{entitle}]]" ] }
+		| #{uwagi_hash[ "[[:d:#{datatitle}]]" ] }
 		| #{Time.now.strftime '%Y-%m-%d'}
 		".gsub '		', ''
 	end
