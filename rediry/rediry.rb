@@ -1,7 +1,7 @@
 require 'sunflower'
 
 s = Sunflower.new.login
-base = "action=query&generator=allpages&gapfilterredir=redirects&gaplimit=1000&prop=revisions&rvprop=content&gapfrom="
+base = "action=query&generator=allpages&gapfilterredir=redirects&gaplimit=1000&prop=revisions&rvprop=content&gapcontinue="
 cont = false
 list = []
 
@@ -20,7 +20,7 @@ else
 	# funny stuff, some pages are broken and their text is... false
 	list += redirs.select{|title, cont| cont.count('#')>1 rescue puts('!!!',title)&&false}
 	
-	cont = res['query-continue']['allpages']['gapfrom'] rescue nil
+	cont = res['query-continue']['allpages']['gapcontinue'] rescue nil
 end
 
 while cont
@@ -32,7 +32,7 @@ while cont
 	# funny stuff, some pages are broken and their text is... false
 	list += redirs.select{|title, cont| cont.count('#')>1 rescue puts('!!!',title)&&false}
 	
-	cont = res['query-continue']['allpages']['gapfrom'] rescue nil
+	cont = res['query-continue']['allpages']['gapcontinue'] rescue nil
 	
 	Marshal.dump list, f=File.open('lista-marshal', 'w')
 	f.close
