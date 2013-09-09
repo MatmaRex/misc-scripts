@@ -1,11 +1,6 @@
 # coding: utf-8
 require 'sunflower'
 
-at_exit do
-	require 'win32/sound'
-	Win32::Sound.beep 200, 1500
-end
-
 def quicksave what, where
 	begin
 		File.open("#{where}-mar", 'wb'){|f| f.write Marshal.dump what}
@@ -34,7 +29,6 @@ line_re = /
 	| # or
 	^(==+[^=]+==+) # heading
 /x
-inter_re = /\[\[pl:(.+?)\]\]/
 uwagi_re = / # dot doesn't match newline - \s does
 	\|- \s+
 	\| .+ \s+ # lp
@@ -53,10 +47,10 @@ translation_table = Hash[ File.readlines('naglowki-en.txt').map(&:strip).zip Fil
 # in lists, links are strings/nil, headers (with = signs) are symbols
 
 en = quickload(:en) or begin
-	s = Sunflower.new('meta.wikimedia.org')
+	s = Sunflower.new 'meta'
 	base = 'List of articles every Wikipedia should have'
 
-	p = Page.new base, 'meta.wikimedia.org'
+	p = s.page base
 	
 	en = []
 	p.text.scan(line_re){|link, header|
@@ -71,10 +65,10 @@ en = quickload(:en) or begin
 end
 
 pl = quickload(:pl) or begin
-	s = Sunflower.new('en.wikipedia.org')
-	i = 0
-	pl = en.map{|a| 
-		puts i+=1
+	s = Sunflower.new 'w:en'
+	puts 'Mapping interwiki...'
+	pl = en.map.with_index{|a, i|
+		puts i
 		if a.is_a? Symbol
 			(a.to_s.sub(/\A(=+)([^=]+)\1\Z/){"#{$1} #{translation_table[$2.strip]} #{$1}"}).to_sym
 		else
@@ -82,6 +76,7 @@ pl = quickload(:pl) or begin
 			resp['query']['pages'].values[0]['langlinks'].find{|h| h['lang'] == 'pl'}['*'] rescue nil
 		end
 	}
+	puts 'done.'
 
 	quicksave pl, :pl
 end
@@ -90,10 +85,10 @@ end
 
 
 
-s = Sunflower.new('pl.wikipedia.org').login
+s = Sunflower.new('w:pl').login
 
 uwagi_hash = {}
-p = Page.new('Wikipedia:Strony, które powinna mieć każda Wikipedia', 'pl')
+p = s.page 'Wikipedia:Strony, które powinna mieć każda Wikipedia'
 p.text.scan(uwagi_re) do |entitle, uwagi, data|
 	entitle, uwagi, data = entitle.strip, uwagi.strip, data.strip
 	uwagi_hash[entitle] = uwagi unless ['', 'przekierowanie?', 'interwiki-link do sekcji!'].include? uwagi
@@ -129,6 +124,7 @@ out.sync = true
 
 headersalready = 0
 pairs = en.zip(pl)
+puts 'Scanning articles...'
 pairs.each_with_index do |pair, i|
 	entitle, title = *pair
 	
@@ -166,7 +162,7 @@ pairs.each_with_index do |pair, i|
 		| #{uwagi_hash[ "[[:en:#{entitle}]]" ] || 'interwiki-link do sekcji!' }
 		| #{Time.now.strftime '%Y-%m-%d'}
 		".gsub '		', ''
-	elsif !(cats = (s.make_list 'categorieson', title rescue nil))
+	elsif !(cats = (s.make_list 'categories_on', title rescue nil))
 		# ours is a redirect?
 		out.puts "|-
 		| #{lp}.
@@ -180,7 +176,7 @@ pairs.each_with_index do |pair, i|
 		".gsub '		', ''
 	else
 		# all seems fine
-		p = Page.new title, 'pl'
+		p = s.page title
 		
 		ikonki = cats.map{|cat|
 			cat = cat.sub(/\AKategoria:/,'')
@@ -230,7 +226,7 @@ out.close
 if ARGV[0]=='--upload'
 	text = File.binread('kanon.txt').force_encoding('utf-8').strip
 	s.summary = 'automatyczna aktualizacja danych'
-	p = Page.new 'Wikipedia:Strony, które powinna mieć każda Wikipedia', 'pl'
+	p = s.page 'Wikipedia:Strony, które powinna mieć każda Wikipedia'
 	p.text = p.text.sub(
 		/(<!-- POCZĄTEK LISTY - nie usuwaj tej linii -->)([\s\S]+?)(<!-- KONIEC LISTY - nie usuwaj tej linii -->)/,
 		"\\1\n#{text}\n\\3"
