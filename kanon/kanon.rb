@@ -58,7 +58,7 @@ pl = d.each_slice(50).map{|ids|
 		if a.is_a? Symbol
 			(a.to_s.sub(/\A(=+)([^=]+)\1\Z/){"#{$1} #{translation_table[$2.strip]} #{$1}"}).to_sym
 		else
-			wikidata['entities'][a.downcase]['sitelinks']['plwiki']['title'] rescue nil
+			wikidata['entities'][a.upcase]['sitelinks']['plwiki']['title'] rescue nil
 		end
 	}
 }.flatten
@@ -170,8 +170,8 @@ pairs.each_with_index do |pair, i|
 			ikonki << 'Plik:Nuvola kdict glass.png|20x20px|Źródła/WER'
 		end
 		
-		fa = p.text.scan(/\{\{link FA\|(.+?)}}/i).flatten.map{|lng| [lng, (wikidata['entities'][datatitle.downcase]['sitelinks'][lng.gsub('-','_') + 'wiki']['title'] rescue puts title, lng) ] }.compact
-		ga = p.text.scan(/\{\{link GA\|(.+?)}}/i).flatten.map{|lng| [lng, (wikidata['entities'][datatitle.downcase]['sitelinks'][lng.gsub('-','_') + 'wiki']['title'] rescue puts title, lng) ] }.compact
+		fa = p.text.scan(/\{\{link FA\|(.+?)}}/i).flatten.map{|lng| [lng, (wikidata['entities'][datatitle.upcase]['sitelinks'][lng.gsub('-','_') + 'wiki']['title'] rescue puts title, lng) ] }.compact
+		ga = p.text.scan(/\{\{link GA\|(.+?)}}/i).flatten.map{|lng| [lng, (wikidata['entities'][datatitle.upcase]['sitelinks'][lng.gsub('-','_') + 'wiki']['title'] rescue puts title, lng) ] }.compact
 		ga -= fa # never display links twice
 		
 		kilobytes = p.text.length.to_f/1024
