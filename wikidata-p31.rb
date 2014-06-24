@@ -10,12 +10,11 @@ raise wdq['status']['error'] unless wdq['status']['error'] == 'OK'
 
 items = wdq['items']
 
-items.first(50).each do |item|
+items.each do |item|
 	id = "Q#{item}"
 	print "#{id}... "
 	
 	# get claim info
-	apiresult=
 	claims = wd.API(
 		action: 'wbgetclaims',
 		entity: id,
@@ -91,6 +90,11 @@ items.first(50).each do |item|
                 "type"=>"wikibase-entityid"}}]},
          "snaks-order"=>["P1080"]}]}]}}
 =end
+
+	if !claims || !claims['claims']
+		puts "Article deleted?"
+		next
+	end
 	
 	claim_list = claims['claims']['P31'].map{|c| 
 		boring_keys = %w[id mainsnak]
@@ -131,6 +135,10 @@ items.first(50).each do |item|
 	]
 	
 	used_qs = claim_list.map{|c| c['q'] }.sort
+	if used_qs == [15632617]
+		puts "Already processed"
+		next
+	end
 	unless valid_sets.include? used_qs
 		puts "Unrecognized set of P31 values: #{used_qs.inspect}"
 		next
