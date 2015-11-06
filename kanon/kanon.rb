@@ -170,8 +170,13 @@ pairs.each_with_index do |pair, i|
 			ikonki << 'Plik:Nuvola kdict glass.png|20x20px|Źródła/WER'
 		end
 		
-		fa = p.text.scan(/\{\{link FA\|(.+?)}}/i).flatten.map{|lng| [lng, (wikidata['entities'][datatitle.upcase]['sitelinks'][lng.gsub('-','_') + 'wiki']['title'] rescue puts title, lng) ] }.compact
-		ga = p.text.scan(/\{\{link GA\|(.+?)}}/i).flatten.map{|lng| [lng, (wikidata['entities'][datatitle.upcase]['sitelinks'][lng.gsub('-','_') + 'wiki']['title'] rescue puts title, lng) ] }.compact
+		badges = wikidata['entities'][datatitle.upcase]['sitelinks'].values
+			.select{|o| o['site'] != 'plwiki' && !o['badges'].empty? }
+			.map{|o| o['_language'] = o['site'].sub(/wiki$/, '').gsub('_','-'); o }
+		fa = badges.select{|o| o['badges'].include? 'Q17437796' }
+			.map{|o| [ o['_language'], o['title'] ] }
+		ga = badges.select{|o| o['badges'].include? 'Q17437798' }
+			.map{|o| [ o['_language'], o['title'] ] }
 		ga -= fa # never display links twice
 		
 		kilobytes = p.text.length.to_f/1024
