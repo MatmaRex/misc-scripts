@@ -45,7 +45,7 @@ p.text.scan(line_re){|link, header|
 
 
 puts 'Mapping interwiki...'
-s = Sunflower.new 'www.wikidata.org'
+s = Sunflower.new 'https://www.wikidata.org'
 wikidata = {} # used later
 pl = d.each_slice(50).map{|ids|
 	wikidata.sunflower_recursive_merge! s.API(
