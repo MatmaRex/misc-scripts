@@ -77,15 +77,15 @@ end
 
 
 cats_to_icons = {
-	'Artykuły na medal' => 'Plik:Wikimedal alt1.svg',
+	'Artykuły na medal' => 'Plik:Wikimedal POL.svg',
 	'Dobre artykuły' => 'Plik:Propozycja DA.svg',
 	'Artykuły do zintegrowania' => 'Plik:Mergefrom.svg',
-	'Linki wewnętrzne do dodania' => 'Plik:Wikitext.svg',
-	'Artykuły wymagające dopracowania' => 'Plik:DoPracowania.jpg',
-	'Artykuły niezgodne z normami polskiego języka literackiego' => 'Plik:DoPracowania.jpg',
-	'Artykuły wymagające poprawy stylu' => 'Plik:DoPracowania.jpg',
-	'Szablon dopracować bez podanych parametrów' => 'Plik:DoPracowania.jpg',
-	'Artykuły wymagające neutralnego ujęcia tematu' => 'Plik:Nuvola apps cache.png',
+	'Linki wewnętrzne do dodania' => 'Plik:OOjs UI icon link-ltr.svg',
+	'Artykuły wymagające dopracowania' => 'Plik:Broom icon.svg',
+	'Artykuły niezgodne z normami polskiego języka literackiego' => 'Plik:Broom icon.svg',
+	'Artykuły wymagające poprawy stylu' => 'Plik:Broom icon.svg',
+	'Szablon dopracować bez podanych parametrów' => 'Plik:Broom icon.svg',
+	'Artykuły wymagające neutralnego ujęcia tematu' => 'Plik:Unbalanced scales lighter one blue.svg',
 }
 
 intro = "{| class='wikitable' style='width:100%'
@@ -167,7 +167,7 @@ pairs.each_with_index do |pair, i|
 			end
 		}.uniq.compact
 		if p.text =~ /\{\{[źŹ]ródła|\{\{[dD]opracować\|.+?(?:źródła|WER)/i
-			ikonki << 'Plik:Nuvola kdict glass.png|20x20px|Źródła/WER'
+			ikonki << 'Plik:Question book-4.svg|20x20px|Źródła/WER'
 		end
 
 		badges = wikidata['entities'][datatitle.upcase]['sitelinks'].values
