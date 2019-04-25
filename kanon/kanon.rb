@@ -206,6 +206,7 @@ end
 out.puts '|}'
 out.close
 
+File.write 'kanon.txt', File.read('kanon.txt').gsub(/ +\n/, "\n")
 
 if ARGV[0]=='--upload'
 	text = File.binread('kanon.txt').force_encoding('utf-8').strip
