@@ -53,7 +53,7 @@ pl = d.each_slice(50).map{|ids|
 		props: 'sitelinks',
 		ids: ids.reject{|a| a.is_a? Symbol }.join('|'),
 	)
-	
+
 	ids.map{|a|
 		if a.is_a? Symbol
 			(a.to_s.sub(/\A(=+)([^=]+)\1\Z/){"#{$1} #{translation_table[$2.strip]} #{$1}"}).to_sym
@@ -107,12 +107,12 @@ pairs = d.zip(pl)
 puts 'Scanning articles...'
 pairs.each_with_index do |pair, i|
 	datatitle, title = *pair
-	
+
 	lp = i - headersalready + 1
 	headersalready += 1 if title.is_a? Symbol
-	
+
 	puts lp
-	
+
 	if title.is_a? Symbol
 		# heading
 		out.puts '|}' unless i==0 or pl[i-1].is_a? Symbol # don't insert table if consec. headers
@@ -124,9 +124,9 @@ pairs.each_with_index do |pair, i|
 		| #{lp}.
 		| ?
 		| [[:d:#{datatitle}]]
-		| 
-		| 
-		| 
+		|
+		|
+		|
 		| #{uwagi_hash[ "[[:d:#{datatitle}]]" ] }
 		| #{Time.now.strftime '%Y-%m-%d'}
 		".gsub '		', ''
@@ -136,9 +136,9 @@ pairs.each_with_index do |pair, i|
 		| #{lp}.
 		| [[#{title}]]
 		| [[:d:#{datatitle}]]
-		| 
-		| 
-		| 
+		|
+		|
+		|
 		| #{uwagi_hash[ "[[:d:#{datatitle}]]" ] || 'interwiki-link do sekcji!' }
 		| #{Time.now.strftime '%Y-%m-%d'}
 		".gsub '		', ''
@@ -148,16 +148,16 @@ pairs.each_with_index do |pair, i|
 		| #{lp}.
 		| [[#{title}]]
 		| [[:d:#{datatitle}]]
-		| 
-		| 
-		| 
+		|
+		|
+		|
 		| #{uwagi_hash[ "[[:d:#{datatitle}]]" ] || 'przekierowanie?' }
 		| #{Time.now.strftime '%Y-%m-%d'}
 		".gsub '		', ''
 	else
 		# all seems fine
 		p = s.page title
-		
+
 		ikonki = cats.map{|cat|
 			cat = cat.sub(/\AKategoria:/,'')
 			if cats_to_icons[cat]
@@ -169,7 +169,7 @@ pairs.each_with_index do |pair, i|
 		if p.text =~ /\{\{[źŹ]ródła|\{\{[dD]opracować\|.+?(?:źródła|WER)/i
 			ikonki << 'Plik:Nuvola kdict glass.png|20x20px|Źródła/WER'
 		end
-		
+
 		badges = wikidata['entities'][datatitle.upcase]['sitelinks'].values
 			.select{|o| o['site'] != 'plwiki' && !o['badges'].empty? }
 			.map{|o| o['_language'] = o['site'].sub(/wiki$/, '').gsub('_','-'); o }
@@ -178,9 +178,9 @@ pairs.each_with_index do |pair, i|
 		ga = badges.select{|o| o['badges'].include? 'Q17437798' }
 			.map{|o| [ o['_language'], o['title'] ] }
 		ga -= fa # never display links twice
-		
+
 		kilobytes = p.text.length.to_f/1024
-		kilobytes_style = 
+		kilobytes_style =
 			case kilobytes
 			when 0..5; 'color:#800; font-weight:bold'
 			when 5..10; 'color:#800'
@@ -189,7 +189,7 @@ pairs.each_with_index do |pair, i|
 			when 100..9999; 'color:#080; font-weight:bold'
 			end
 		;
-		
+
 		out.puts "|-
 		| #{lp}.
 		| [[#{title}]]

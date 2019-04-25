@@ -1,4 +1,4 @@
-Biografie 
+Biografie
 Aktorzy, tancerze, modele
 Artyści i architekci
 Pisarze, dramaturdzy i poeci
@@ -25,7 +25,7 @@ Zagadnienia społeczne
 Język i literatura
 Nauka
 Astronomia
-Biologia 
+Biologia
 Procesy biologiczne
 Anatomia
 Zdrowie i medycyna
@@ -35,9 +35,9 @@ Nauki o Ziemi
 Fizyka
 Pomiary i jednostki
 Pomiar czasu
-Pożywienie 
+Pożywienie
 Napoje
-Matematyka 
+Matematyka
 Technologia
 Komunikacja
 Elektronika
@@ -52,11 +52,11 @@ Film, radio i telewizja
 Muzyka
 Wypoczynek
 Historia i geografia
-Historia 
+Historia
 Prehistoria i starożytność
 Średniowiecze i wczesna nowożytność
 Nowożytność
-Geografia 
+Geografia
 Kontynenty i regiony geograficzne
 Państwa
 Miasta

@@ -9,12 +9,12 @@ Inventors, scientists and mathematicians
 Philosophers and social scientists
 Political leaders
 Religious figures and theologians
-Philosophy and psychology 
+Philosophy and psychology
 Philosophy
 Psychology
-Religion 
+Religion
 World view and religion
-Social sciences 
+Social sciences
 Family and relationships
 Politics
 Business and economics
@@ -23,9 +23,9 @@ International organizations
 War and military
 Social issues
 Language and literature
-Science 
+Science
 Astronomy
-Biology 
+Biology
 Biological processes
 Anatomy
 Health and medicine
@@ -35,28 +35,28 @@ Earth science
 Physics
 Measurement and units
 Timekeeping
-Foodstuffs 
+Foodstuffs
 Beverages
 Mathematics
-Technology 
+Technology
 Communication
-Electronics 
+Electronics
 Computers and Internet
 Energy and fuels
 Materials
 Transportation
 Weapons
-Arts and recreation 
+Arts and recreation
 Architecture and civil engineering
 Film, radio and television
 Music
 Recreation
-History and geography 
-History 
+History and geography
+History
 Prehistory and ancient world
 Middle Ages and Early Modern
 Modern
-Geography 
+Geography
 Continents and major regions
 Countries
 Cities
