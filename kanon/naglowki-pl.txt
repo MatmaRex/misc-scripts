@@ -1,10 +1,9 @@
 Biografie
-Aktorzy, tancerze, modele
 Artyści i architekci
 Pisarze, dramaturdzy i poeci
 Kompozytorzy i muzycy
 Odkrywcy i podróżnicy
-Reżyserzy i scenarzyści
+Reżyserzy, scenarzyści i aktorzy
 Wynalazcy, naukowcy i matematycy
 Filozofowie i badacze społeczeństwa
 Liderzy polityczni
@@ -12,7 +11,6 @@ Postacie religijne i teologowie
 Filozofia i psychologia
 Filozofia
 Psychologia
-Religia
 Światopoglądy i religie
 Nauki społeczne
 Rodzina i związki
@@ -23,21 +21,24 @@ Organizacje międzynarodowe
 Wojna i siły zbrojne
 Zagadnienia społeczne
 Język i literatura
+Pomiary
+Waga, objętość i odległość
+Czas
 Nauka
 Astronomia
 Biologia
 Procesy biologiczne
+Organizmy
 Anatomia
 Zdrowie i medycyna
-Organizmy
 Chemia
 Nauki o Ziemi
 Fizyka
-Pomiary i jednostki
-Pomiar czasu
+Matematyka
+Pożywienie i rolnictwo
+Rolnictwo
 Pożywienie
 Napoje
-Matematyka
 Technologia
 Komunikacja
 Elektronika
@@ -51,7 +52,6 @@ Architektura i budownictwo
 Film, radio i telewizja
 Muzyka
 Wypoczynek
-Historia i geografia
 Historia
 Prehistoria i starożytność
 Średniowiecze i wczesna nowożytność

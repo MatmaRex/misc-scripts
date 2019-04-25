@@ -1,10 +1,9 @@
 Biography
-Actors, dancers and models
 Artists and architects
 Authors, playwrights and poets
 Composers and musicians
 Explorers and travelers
-Film directors and screenwriters
+Film directors, screenwriters and actors
 Inventors, scientists and mathematicians
 Philosophers and social scientists
 Political leaders
@@ -12,7 +11,6 @@ Religious figures and theologians
 Philosophy and psychology
 Philosophy
 Psychology
-Religion
 World view and religion
 Social sciences
 Family and relationships
@@ -23,21 +21,24 @@ International organizations
 War and military
 Social issues
 Language and literature
+Measurements
+Weight, volume and distance
+Time
 Science
 Astronomy
 Biology
 Biological processes
+Organisms
 Anatomy
 Health and medicine
-Organisms
 Chemistry
 Earth science
 Physics
-Measurement and units
-Timekeeping
-Foodstuffs
-Beverages
 Mathematics
+Food and agriculture
+Agriculture
+Food
+Beverages
 Technology
 Communication
 Electronics
@@ -51,7 +52,6 @@ Architecture and civil engineering
 Film, radio and television
 Music
 Recreation
-History and geography
 History
 Prehistory and ancient world
 Middle Ages and Early Modern
