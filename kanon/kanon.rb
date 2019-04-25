@@ -172,6 +172,7 @@ pairs.each_with_index do |pair, i|
 
 		badges = wikidata['entities'][datatitle.upcase]['sitelinks'].values
 			.select{|o| o['site'] != 'plwiki' && !o['badges'].empty? }
+			.select{|o| o['site'] =~ /wiki$/ }
 			.map{|o| o['_language'] = o['site'].sub(/wiki$/, '').gsub('_','-'); o }
 		fa = badges.select{|o| o['badges'].include? 'Q17437796' }
 			.map{|o| [ o['_language'], o['title'] ] }
