@@ -8,7 +8,8 @@ sites = meta.API('action=sitematrix&smlimit=max')['sitematrix']
 sites.delete 'count'
 sites = sites.delete('specials') + sites.values.map{|a| a['site'] }.inject(:+)
 
-# sites = [{'url' => 'w:pl'}]
+message = 'anoneditwarning'
+boringtags = %w[<strong> </strong> <u> </u> <big> </big> <small> </small> <br> <br/> <span> </span>] + ['<br />', '<span class="plainlinks">']
 
 $stdout.sync = true
 # sites.each do |hash|
@@ -20,13 +21,16 @@ Parallel.each(sites, in_threads: 10) do |hash|
 		out = "#{hash['url'].sub %r|^https?://|, ''}: "
 		
 		s = Sunflower.new hash['url']
-		p = s.page 'MediaWiki:stub-threshold'
+		p = s.page "MediaWiki:#{message}"
 		hascustom = p.text != ''
+		hashtml = p.text.gsub( Regexp.union(boringtags), '' ).include? '<'
 		
-		messagecontents = s.API('action=query&meta=allmessages&ammessages=stub-threshold')
+		$stderr.puts p.text.gsub( Regexp.union(boringtags), '' ).scan(/<.+?>/)
+		
+		messagecontents = s.API("action=query&meta=allmessages&ammessages=#{message}")
 		messagecontents = messagecontents['query']['allmessages'][0]['*']
 		
-		out << (hascustom ? "CUSTOM #{messagecontents}" : 'DEFAULT')
+		out << (hashtml ? 'HTML' : hascustom ? 'CUSTOM' : 'DEFAULT')
 		
 		print "#{out}\n"
 	rescue
