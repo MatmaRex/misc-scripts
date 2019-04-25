@@ -88,7 +88,7 @@ cats_to_icons = {
 	'Artykuły wymagające neutralnego ujęcia tematu' => 'Plik:Unbalanced scales lighter one blue.svg',
 }
 
-intro = "{| class='wikitable' style='width:100%'
+intro = "{| class='wikitable sortable' style='width:100%'
 ! Lp.
 !style='width:20%'| Tytuł
 !style='width:15%'| Wikidane
@@ -180,7 +180,7 @@ pairs.each_with_index do |pair, i|
 		ga -= fa # never display links twice
 
 		kilobytes = p.text.length.to_f/1024
-		kilobytes_style =
+		size_style =
 			case kilobytes
 			when 0..5; 'color:#800; font-weight:bold'
 			when 5..10; 'color:#800'
@@ -194,9 +194,9 @@ pairs.each_with_index do |pair, i|
 		| #{lp}.
 		| [[#{title}]]
 		| [[:d:#{datatitle}]]
-		|#{kilobytes_style and "style='#{kilobytes_style}'|"} #{("%.1f" % kilobytes).gsub '.', ','}&nbsp;KB
+		|data-sort-value='#{p.text.length}'#{size_style and " style='#{size_style}'"}| #{("%.1f" % kilobytes).gsub '.', ','}&nbsp;KB
 		| #{ikonki.map{|a| "[[#{a}]]"}.join ' '}
-		| #{fa.empty? ? '—' : fa.map{|lng, tt| "[[:#{lng}:#{tt}|#{lng}]]"}.join(', ')} / #{ga.empty? ? '—' : ga.map{|lng, tt| "[[:#{lng}:#{tt}|#{lng}]]"}.join(', ')}
+		|data-sort-value='#{fa.length+ga.length}'| #{fa.empty? ? '—' : fa.map{|lng, tt| "[[:#{lng}:#{tt}|#{lng}]]"}.join(', ')} / #{ga.empty? ? '—' : ga.map{|lng, tt| "[[:#{lng}:#{tt}|#{lng}]]"}.join(', ')}
 		| #{uwagi_hash[ "[[:d:#{datatitle}]]" ] }
 		| #{Time.now.strftime '%Y-%m-%d'}
 		".gsub '		', ''
