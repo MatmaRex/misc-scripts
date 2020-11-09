@@ -77,8 +77,8 @@ end
 
 
 cats_to_icons = {
-	'Artykuły na medal' => 'Plik:Wikimedal POL.svg',
-	'Dobre artykuły' => 'Plik:Propozycja DA.svg',
+	'Artykuły na Medal' => 'Plik:Wikimedal POL.svg',
+	'Dobre Artykuły' => 'Plik:Propozycja DA.svg',
 	'Artykuły do zintegrowania' => 'Plik:Mergefrom.svg',
 	'Linki wewnętrzne do dodania' => 'Plik:OOjs UI icon link-ltr.svg',
 	'Artykuły wymagające dopracowania' => 'Plik:Broom icon.svg',
