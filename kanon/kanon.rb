@@ -56,7 +56,7 @@ pl = d.each_slice(50).map{|ids|
 
 	ids.map{|a|
 		if a.is_a? Symbol
-			(a.to_s.sub(/\A(=+)([^=]+)\1\Z/){"#{$1} #{translation_table[$2.strip]} #{$1}"}).to_sym
+			(a.to_s.sub(/\A(=+)([^=]+)\1\Z/){"#{$1} #{translation_table[$2.strip] || '!!!'+$2.strip} #{$1}"}).to_sym
 		else
 			wikidata['entities'][a.upcase]['sitelinks']['plwiki']['title'] rescue nil
 		end
