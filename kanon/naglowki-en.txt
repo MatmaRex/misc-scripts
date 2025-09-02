@@ -1,17 +1,17 @@
 Biography
-Artists and architects
-Authors, playwrights and poets
-Composers and musicians
-Explorers and travelers
-Film directors, screenwriters and actors
-Inventors, scientists and mathematicians
 Philosophers and social scientists
-Political leaders
 Religious figures and theologians
+Political leaders
+Inventors, scientists and mathematicians
+Artists and architects
+Composers and musicians
+Film directors, screenwriters and actors
+Authors, playwrights and poets
+Explorers and travellers
 Philosophy
 Religion
-Psychology
 Social sciences
+Psychology
 Family and relationships
 Politics
 Business and economics
@@ -30,6 +30,7 @@ Biological processes
 Organisms
 Anatomy
 Health and medicine
+Specific Diseases/Conditions
 Chemistry
 Earth science
 Physics
@@ -52,12 +53,24 @@ Film, radio and television
 Music
 Recreation
 History
-Prehistory and ancient world
-Middle Ages and Early Modern
-Modern
+Prehistoric and ancient history
+Medieval and Renaissance periods
+Early modern and modern periods
 Geography
 Continents and major regions
 Countries
+Africa
+Asia
+Europe
+North America
+South America
+Oceania
 Cities
+Africa
+Asia
+Europe
+North America
+South America
+Oceania
 Bodies of water
 Mountains and deserts

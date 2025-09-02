@@ -1,17 +1,17 @@
 Biografie
-Artyści i architekci
-Pisarze, dramaturdzy i poeci
-Kompozytorzy i muzycy
-Odkrywcy i podróżnicy
-Reżyserzy, scenarzyści i aktorzy
-Wynalazcy, naukowcy i matematycy
 Filozofowie i badacze społeczeństwa
-Liderzy polityczni
 Postacie religijne i teologowie
+Liderzy polityczni
+Wynalazcy, naukowcy i matematycy
+Artyści i architekci
+Kompozytorzy i muzycy
+Reżyserzy, scenarzyści i aktorzy
+Pisarze, dramaturdzy i poeci
+Odkrywcy i podróżnicy
 Filozofia
 Religia
-Psychologia
 Nauki społeczne
+Psychologia
 Rodzina i związki
 Polityka
 Biznes i ekonomia
@@ -30,6 +30,7 @@ Procesy biologiczne
 Organizmy
 Anatomia
 Zdrowie i medycyna
+Choroby/schorzenia
 Chemia
 Nauki o Ziemi
 Fizyka
@@ -52,12 +53,24 @@ Film, radio i telewizja
 Muzyka
 Wypoczynek
 Historia
-Prehistoria i starożytność
-Średniowiecze i wczesna nowożytność
-Nowożytność
+Prehistoria i historia starożytna
+Średniowiecze i renesans
+Historia nowożytna i najnowsza
 Geografia
 Kontynenty i regiony geograficzne
 Państwa
+Afryka
+Azja
+Europa
+Ameryka Północna
+Ameryka Południowa
+Oceania
 Miasta
+Afryka
+Azja
+Europa
+Ameryka Północna
+Ameryka Południowa
+Oceania
 Obszary wodne
 Góry i pustynie
