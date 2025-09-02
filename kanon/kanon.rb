@@ -77,8 +77,8 @@ end
 
 
 cats_to_icons = {
-	'Artykuły na Medal' => 'Plik:Wikimedal POL.svg',
-	'Dobre Artykuły' => 'Plik:Propozycja DA.svg',
+	'Artykuły na Medal' => 'Plik:Wikimedal POL.svg|link=Wikipedia:Artykuły na Medal',
+	'Dobre Artykuły' => 'Plik:Propozycja DA.svg|link=Wikipedia:Dobre Artykuły',
 	'Artykuły do zintegrowania' => 'Plik:Mergefrom.svg',
 	'Linki wewnętrzne do dodania' => 'Plik:OOjs UI icon link-ltr.svg',
 	'Artykuły wymagające dopracowania' => 'Plik:Broom icon.svg',
@@ -167,7 +167,7 @@ pairs.each_with_index do |pair, i|
 			end
 		}.uniq.compact
 		if p.text =~ /\{\{[źŹ]ródła|\{\{[dD]opracować\|.+?(?:źródła|WER)/i
-			ikonki << 'Plik:Question book-4.svg|20x20px|Źródła/WER'
+			ikonki << 'Plik:Question book-4.svg|link=Wikipedia:Weryfikowalność|20x20px|Źródła/WER'
 		end
 
 		badges = wikidata['entities'][datatitle.upcase]['sitelinks'].values
